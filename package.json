@@ -1,5 +1,5 @@
 {
-  "name": "@ckeditor/ckeditor5-build-decoupled-document",
+  "name": "@taxer/ckeditor5-build-document-editor",
   "version": "37.1.0",
   "description": "The document editor build of CKEditor 5 – the best browser-based rich text editor.",
   "keywords": [
@@ -43,6 +43,7 @@
     "@ckeditor/ckeditor5-heading": "^37.1.0",
     "@ckeditor/ckeditor5-image": "^37.1.0",
     "@ckeditor/ckeditor5-indent": "^37.1.0",
+    "@ckeditor/ckeditor5-inspector": "^4.1.0",
     "@ckeditor/ckeditor5-link": "^37.1.0",
     "@ckeditor/ckeditor5-list": "^37.1.0",
     "@ckeditor/ckeditor5-media-embed": "^37.1.0",
@@ -80,7 +81,6 @@
   },
   "scripts": {
     "build": "webpack --mode production",
-    "postbuild": "tsc -p ./tsconfig.types.json",
     "preversion": "npm run build"
   }
 }

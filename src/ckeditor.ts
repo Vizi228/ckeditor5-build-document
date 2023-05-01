@@ -39,7 +39,6 @@ import {
 import { Indent, IndentBlock } from "@ckeditor/ckeditor5-indent";
 import { Link } from "@ckeditor/ckeditor5-link";
 import { List, ListProperties } from "@ckeditor/ckeditor5-list";
-import { MediaEmbed } from "@ckeditor/ckeditor5-media-embed";
 import { Paragraph } from "@ckeditor/ckeditor5-paragraph";
 import { PasteFromOffice } from "@ckeditor/ckeditor5-paste-from-office";
 import { Table, TableToolbar } from "@ckeditor/ckeditor5-table";
@@ -78,7 +77,6 @@ export default class DecoupledEditor extends DecoupledEditorBase {
     Link,
     List,
     ListProperties,
-    MediaEmbed,
     Paragraph,
     PasteFromOffice,
     PictureEditing,
@@ -107,11 +105,9 @@ export default class DecoupledEditor extends DecoupledEditorBase {
         "underline",
         "strikethrough",
         "|",
-        "link",
         "uploadImage",
         "insertTable",
         "blockQuote",
-        "mediaEmbed",
         "|",
         "alignment",
         "|",
@@ -121,31 +117,39 @@ export default class DecoupledEditor extends DecoupledEditorBase {
         "indent",
       ],
     },
-    allowedContent: "placeholder[contenteditable=false]",
-    fillEmptyBlocks: false,
     placeholderConfig: {
       types: [
-        { name: "Назва профілю", propertyName: "username" },
-        { name: "ІПН", propertyName: "IPN" },
-        { name: "Адреса", propertyName: "address" },
-        { name: "IBAN", propertyName: "IBAN" },
-        { name: "Платник податків", propertyName: "isPayable" },
-        { name: "Одержувач", propertyName: "receiver" },
-        { name: "Усього", propertyName: "total" },
-        { name: "Назва профілю", propertyName: "username" },
-        { name: "ІПН", propertyName: "IPN" },
-        { name: "Адреса", propertyName: "address" },
-        { name: "IBAN", propertyName: "IBAN" },
-        { name: "Платник податків", propertyName: "isPayable" },
-        { name: "Одержувач", propertyName: "receiver" },
-        { name: "Усього", propertyName: "total" },
-        { name: "Назва профілю", propertyName: "username" },
-        { name: "ІПН", propertyName: "IPN" },
-        { name: "Адреса", propertyName: "address" },
-        { name: "IBAN", propertyName: "IBAN" },
-        { name: "Платник податків", propertyName: "isPayable" },
-        { name: "Одержувач", propertyName: "receiver" },
-        { name: "Усього", propertyName: "total" },
+        {
+          name: "Назва профілю",
+          propertyName: "username",
+          description: "Назва профілю в Таксер",
+        },
+        { name: "ІПН", propertyName: "IPN", description: "Ваш ІПН в Таксер" },
+        {
+          name: "Адреса",
+          propertyName: "address",
+          description: "Адреса вказана в Таксер",
+        },
+        {
+          name: "IBAN",
+          propertyName: "IBAN",
+          description: "IBAN вашого рахунку",
+        },
+        {
+          name: "Платник податків",
+          propertyName: "isPayable",
+          description: "Чи є ви платником податків",
+        },
+        {
+          name: "Одержувач",
+          propertyName: "receiver",
+          description: "Одержувач цього документа",
+        },
+        {
+          name: "Усього",
+          propertyName: "total",
+          description: "Загальна сума номенклатури",
+        },
       ],
     },
     image: {

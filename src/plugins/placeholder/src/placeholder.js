@@ -1,5 +1,5 @@
 import PlaceholderEditing from "./placeholderediting";
-import PlaceholderUi from "./placeholderboxui";
+import PlaceholderUi from "./placeholderui";
 import Plugin from "@ckeditor/ckeditor5-core/src/plugin";
 
 export default class Placeholder extends Plugin {
