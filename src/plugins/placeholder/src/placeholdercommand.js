@@ -1,7 +1,7 @@
 import Command from "@ckeditor/ckeditor5-core/src/command";
 
 export default class PlaceholderCommand extends Command {
-  execute({ name, propertyName }) {
+  execute({ name, propertyName, multiple }) {
     const editor = this.editor;
     const selection = editor.model.document.selection;
 
@@ -10,6 +10,7 @@ export default class PlaceholderCommand extends Command {
         ...Object.fromEntries(selection.getAttributes()),
         name,
         propertyName,
+        multiple,
       });
       editor.model.insertObject(placeholder, null, null, {
         setSelection: "on",

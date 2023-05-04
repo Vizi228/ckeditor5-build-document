@@ -13,6 +13,7 @@ export default class PlaceholderUI extends Plugin {
   init() {
     const editor = this.editor;
     const placeholderNames = editor.config.get("placeholderConfig.types");
+    const translations = editor.config.get("placeholderConfig.translations");
 
     editor.ui.componentFactory.add("placeholder", (locale) => {
       const dropdownView = createDropdown(locale);
@@ -21,9 +22,9 @@ export default class PlaceholderUI extends Plugin {
         dropdownView,
         getDropdownItemsDefinitions(placeholderNames)
       );
-
+      const label = translations[editor.locale.uiLanguage]["Placeholder"];
       dropdownView.buttonView.set({
-        label: editor.t("Placeholder"),
+        label: label,
         tooltip: true,
         withText: true,
       });
@@ -56,12 +57,12 @@ export default class PlaceholderUI extends Plugin {
 
 function getDropdownItemsDefinitions(placeholderNames) {
   const itemDefinitions = new Collection();
-
-  for (const { name, propertyName, description } of placeholderNames) {
+  const sortedData = placeholderNames.sort((a, b) => +a.multiple - +b.multiple);
+  for (const { name, propertyName, description, multiple } of sortedData) {
     const definition = {
       type: "button",
       model: new Model({
-        commandParam: { name, propertyName },
+        commandParam: { name, propertyName, multiple },
         label: name,
         withText: true,
         tooltip: description,

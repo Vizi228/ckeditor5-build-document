@@ -38,7 +38,7 @@ export default class PlaceholderEditing extends Plugin {
 
     schema.register("placeholder", {
       inheritAllFrom: "$inlineObject",
-      allowAttributes: ["name", "propertyName"],
+      allowAttributes: ["name", "propertyName", "multiple"],
     });
   }
 
@@ -49,7 +49,12 @@ export default class PlaceholderEditing extends Plugin {
       model: (viewElement, { writer: modelWriter }) => {
         const name = viewElement.getChild(0).data;
         const propertyName = viewElement.getAttribute("name");
-        return modelWriter.createElement("placeholder", { name, propertyName });
+        const multiple = viewElement.getAttribute("multiple");
+        return modelWriter.createElement("placeholder", {
+          name,
+          propertyName,
+          multiple,
+        });
       },
       view: {
         name: "span",
@@ -71,10 +76,12 @@ export default class PlaceholderEditing extends Plugin {
 
     const createPlaceholderElement = (modelElement, viewWriter) => {
       const name = modelElement.getAttribute("name");
+      const multiple = modelElement.getAttribute("multiple");
       const propertyName = modelElement.getAttribute("propertyName");
       const element = viewWriter.createContainerElement("span", {
         class: "placeholder",
         name: propertyName,
+        multiple,
       });
       const text = viewWriter.createText(name);
       viewWriter.insert(viewWriter.createPositionAt(element, 0), text);
